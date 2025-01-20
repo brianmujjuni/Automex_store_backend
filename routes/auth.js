@@ -6,11 +6,12 @@ const jwt = require("jsonwebtoken");
 const authRouter = express.Router();
 
 authRouter.post("/api/signup", async (req, res) => {
+  
   try {
     const { fullname, email, password } = req.body;
     const userexist = await User.findOne({ email });
     if (userexist) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ msg: "User already exists" });
     } else {
       //generate salt with a cost factor of 10
       const salt = await bcrypt.genSalt(10);
@@ -21,7 +22,7 @@ authRouter.post("/api/signup", async (req, res) => {
       await user.save();
       return res
         .status(201)
-        .json({ message: "User created successfully", data: user });
+        .json({ msg: "User created successfully", data: user });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
