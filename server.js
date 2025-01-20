@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
+const bannerRouter = require("./routes/banner")
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,7 @@ const DB = "mongodb+srv://brianmujjuni:domain017@storeapp.8nkmz.mongodb.net/";
 app.use(express.json());
 //middleware to mount routes
 app.use(authRouter);
+app.use(bannerRouter)
 //connect to db
 mongoose
   .connect(DB)
