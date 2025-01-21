@@ -8,7 +8,7 @@ const categorySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    bannner:{
+    banner:{
         type: String,   
         required: true
     }
