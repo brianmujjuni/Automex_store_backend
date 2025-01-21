@@ -16,4 +16,13 @@ categoryRouter.post('/api/categories',async(req,res)=>{
     }
 })
 
+categoryRouter.get('/api/categories',async(req,res)=>{
+    try {
+        const categories = await Category.find({})
+        return res.status(200).json(categories)
+    } catch (err) {
+        res.status(400).json({error: err.message})
+    }
+})
+
 module.exports = categoryRouter
