@@ -4,12 +4,12 @@ const authRouter = require("./routes/auth");
 const bannerRouter = require("./routes/banner");
 const categoryRouter = require("./routes/category");
 const subCategoryRouter = require("./routes/sub_category");
-
+require('dotenv').config();
 const app = express();
 const PORT = 3000;
 
 //db connection url
-const DB = "mongodb+srv://brianmujjuni:domain017@storeapp.8nkmz.mongodb.net/";
+const DB = process.env.DB_CONNECTION_STRING
 
 app.use(express.json());
 //middleware to mount routes
