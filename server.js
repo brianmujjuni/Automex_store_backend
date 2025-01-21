@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/auth");
-const bannerRouter = require("./routes/banner")
+const bannerRouter = require("./routes/banner");
+const categoryRouter = require("./routes/category");
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,7 @@ app.use(express.json());
 //middleware to mount routes
 app.use(authRouter);
 app.use(bannerRouter)
+app.use(categoryRouter)
 //connect to db
 mongoose
   .connect(DB)
