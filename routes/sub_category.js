@@ -30,5 +30,17 @@ subCategoryRouter.get("/api/subCategories", async (req, res) => {
     }
   });
 
+  subCategoryRouter.get("/api/category/:categoryName/subCategories", async (req, res) => {
+    try {
+      const subCategory = await SubCategory.find({categoryName: req.params.categoryName});
+      if (!subCategory || subCategory.length === 0) {
+        return res.status(404).json({ msg: "Sub Category not found" });
+      }
+      return res.status(200).json(subCategory);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
 
 module.exports = subCategoryRouter;
