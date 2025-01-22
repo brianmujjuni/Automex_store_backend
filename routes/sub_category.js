@@ -2,7 +2,7 @@ const express = require("express");
 const SubCategory = require("../models/sub_category");
 const subCategoryRouter = express.Router();
 
-subCategoryRouter.post("/api/sub_categories", async (req, res) => {
+subCategoryRouter.post("/api/subCategories", async (req, res) => {
   try {
     const { categoryId, categoryName, image, subCategoryName } = req.body;
     const subCategory = new SubCategory({
