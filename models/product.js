@@ -31,15 +31,15 @@ const productSchema = mongoose.Schema({
       required: true,
     },
   ],
-  popular:{
+  popular: {
     type: Boolean,
-    default: false
+    default: false,
   },
-  recommend:{
+  recommend: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const Product = mongoose.model("Product",productSchema)
-module.exports = Product
+const Product = mongoose.model("Product", productSchema);
+module.exports = Product;
