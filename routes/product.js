@@ -31,7 +31,7 @@ productRouter.post("/api/add-product", async (req, res) => {
   }
 });
 
-product.get("/api/popular-products", async (req, res) => {
+productRouter.get("/api/popular-products", async (req, res) => {
   try {
     const product = await Product.find({ popular: true });
     if (!product || product.length == 0) {
