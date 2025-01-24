@@ -45,7 +45,7 @@ productRouter.get("/api/popular-products", async (req, res) => {
 
 productRouter.get("/api/recommended-products", async (req, res) => {
   try {
-    const products = await Product.find({ recommended: true });
+    const products = await Product.find({ recommend: true });
     if (!products || products.length == 0) {
       return res.status(404).json({ msg: "Products not found" });
     }
