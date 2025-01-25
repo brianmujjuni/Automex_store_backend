@@ -5,6 +5,7 @@ const bannerRouter = require("./routes/banner");
 const categoryRouter = require("./routes/category");
 const subCategoryRouter = require("./routes/sub_category");
 const productRouter = require('./routes/product')
+const productReviewRouter = require("./routes/product_review")
 require('dotenv').config();
 const app = express();
 const PORT = 3000;
@@ -19,6 +20,7 @@ app.use(bannerRouter)
 app.use(categoryRouter)
 app.use(subCategoryRouter)
 app.use(productRouter)
+app.use(productReviewRouter)
 //connect to db
 mongoose
   .connect(DB)
