@@ -6,6 +6,7 @@ const categoryRouter = require("./routes/category");
 const subCategoryRouter = require("./routes/sub_category");
 const productRouter = require('./routes/product')
 const productReviewRouter = require("./routes/product_review")
+const cors = require("cors");
 require('dotenv').config();
 const app = express();
 const PORT = 3000;
@@ -14,6 +15,7 @@ const PORT = 3000;
 const DB = process.env.DB_CONNECTION_STRING
 
 app.use(express.json());
+app.use(cors());
 //middleware to mount routes
 app.use(authRouter);
 app.use(bannerRouter)
