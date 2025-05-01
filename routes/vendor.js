@@ -26,4 +26,27 @@ vendorRouter.post("/api/vendor/signup", async (req, res) => {
   }
 });
 
+vendorRouter.post("/api/vendor/signin", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const vendor = await Vendor.findOne({ email });
+    if (!vendor) {
+      return res.status(400).json({ msg: "Invalid email or password" });
+    }
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ msg: "Invalid email or password" });
+    }
+    //generate token
+    const token = jwt.sign({ id: user._id }, "passwordKey");
+    //remove password on user document
+    const { password: pwd, ...data } = vendor._doc;
+    return res
+      .status(200)
+      .json({ msg: "Login successful", vendor: data, token });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = vendorRouter;
