@@ -43,8 +43,8 @@ authRouter.post('/api/signin',async(req,res)=>{
         //generate token
         const token = jwt.sign({id:user._id},"passwordKey");
         //remove password on user document
-        const {password: pwd ,...data} = user._doc;
-        return res.status(200).json({msg:"Login successful",data,token});
+        const {password: pwd , ...data} = user._doc;
+        return res.status(200).json({msg:"Login successful",user: data,token});
 
 
     } catch (error) {

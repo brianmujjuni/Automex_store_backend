@@ -3,6 +3,7 @@ const SubCategory = require("../models/sub_category");
 const subCategoryRouter = express.Router();
 
 subCategoryRouter.post("/api/subCategories", async (req, res) => {
+  console.log(req.body);
   try {
     const { categoryId, categoryName, image, subCategoryName } = req.body;
     const subCategory = new SubCategory({
@@ -17,7 +18,8 @@ subCategoryRouter.post("/api/subCategories", async (req, res) => {
       subCategory,
     });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -26,7 +28,7 @@ subCategoryRouter.get("/api/subCategories", async (req, res) => {
         const subCategories = await SubCategory.find();
         return res.status(200).json(subCategories);
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
   });
 
@@ -38,7 +40,7 @@ subCategoryRouter.get("/api/subCategories", async (req, res) => {
       }
       return res.status(200).json(subCategory);
     } catch (err) {
-      res.status(400).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   });
 
