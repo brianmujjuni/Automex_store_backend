@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const vendorSchema = mongoose.Schema({
-    fullname:{
+    fullName:{
         type: String,
         required: true,
         trim: true
@@ -50,4 +50,4 @@ const vendorSchema = mongoose.Schema({
 })
 
 const Vendor = mongoose.model('Vendor',vendorSchema);
-module.exports = User;
+module.exports = Vendor;

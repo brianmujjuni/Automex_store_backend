@@ -7,7 +7,7 @@ const vendorRouter = express.Router();
 
 vendorRouter.post("/api/vendor/signup", async (req, res) => {
   try {
-    const { fullname, email, password } = req.body;
+    const { fullName, email, password } = req.body;
     const userexist = await Vendor.findOne({ email });
     if (userexist) {
       return res.status(400).json({ msg: "Vendor already exists" });
@@ -17,7 +17,7 @@ vendorRouter.post("/api/vendor/signup", async (req, res) => {
       //hash the password using the salt generated above
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      let vendor = new Vendor({ fullname, email, password: hashedPassword });
+      let vendor = new Vendor({ fullName, email, password: hashedPassword });
       await vendor.save();
       return res.status(201).json({ msg: "User created successfully", vendor });
     }
@@ -38,7 +38,7 @@ vendorRouter.post("/api/vendor/signin", async (req, res) => {
       return res.status(400).json({ msg: "Invalid email or password" });
     }
     //generate token
-    const token = jwt.sign({ id: user._id }, "passwordKey");
+    const token = jwt.sign({ id: vendor._id }, "passwordKey");
     //remove password on user document
     const { password: pwd, ...data } = vendor._doc;
     return res
