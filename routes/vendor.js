@@ -30,10 +30,11 @@ vendorRouter.post("/api/vendor/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
     const vendor = await Vendor.findOne({ email });
+    
     if (!vendor) {
       return res.status(400).json({ msg: "Invalid email or password" });
     }
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, vendor.password);
     if (!passwordMatch) {
       return res.status(400).json({ msg: "Invalid email or password" });
     }
