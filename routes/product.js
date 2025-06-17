@@ -5,6 +5,8 @@ const productRouter = express.Router();
 productRouter.post("/api/add-product", async (req, res) => {
   try {
     const {
+      vendorId,
+      fullName,
       productName,
       productPrice,
       quantity,
@@ -12,8 +14,11 @@ productRouter.post("/api/add-product", async (req, res) => {
       category,
       subCategory,
       images,
+      
     } = req.body;
     const product = new Product({
+      vendorId,
+      fullName,
       productName,
       productPrice,
       quantity,
